@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: "/workinfi_resume/"
+  base: "/workinfi_resume/",
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react']
