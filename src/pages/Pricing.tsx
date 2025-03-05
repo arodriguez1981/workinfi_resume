@@ -37,8 +37,8 @@ const Pricing = () => {
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-6">
           {/* Free Plan */}
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105">
-            <div className="p-8">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105 flex flex-col">
+            <div className="p-8 flex-grow">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Free</h2>
                 <FileText className="h-8 w-8 text-gray-400" />
@@ -50,24 +50,26 @@ const Pricing = () => {
                   <span className="ml-2 text-gray-500">/forever</span>
                 </p>
               </div>
-              <button
-                onClick={() => handlePlanSelection('free')}
-                className="mt-8 w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-200 transition-colors"
-              >
-                Get Started
-              </button>
               <ul className="mt-8 space-y-4">
                 <Feature>Create unlimited resumes</Feature>
-                <Feature>Basic templates</Feature>
+                <Feature>Basic templates (Classic, Split & Executive)</Feature>
                 <Feature>Download with watermark</Feature>
                 <Feature>Standard support</Feature>
               </ul>
             </div>
+            <div className="p-8 pt-0 mt-auto">
+              <button
+                onClick={() => handlePlanSelection('free')}
+                className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+              >
+                Get Started
+              </button>
+            </div>
           </div>
 
           {/* Plus Plan */}
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105">
-            <div className="p-8">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105 flex flex-col">
+            <div className="p-8 flex-grow">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Plus</h2>
                 <Download className="h-8 w-8 text-blue-600" />
@@ -83,9 +85,17 @@ const Pricing = () => {
                   Valid for 7 days
                 </p>
               </div>
+              <ul className="mt-8 space-y-4">
+                <Feature>Everything in Free, plus:</Feature>
+                <Feature>Watermark-free PDF downloads</Feature>
+                <Feature>Premium templates (Creative, Minimalist, Professional, Modern)</Feature>
+                <Feature>Priority support</Feature>
+              </ul>
+            </div>
+            <div className="p-8 pt-0 mt-auto">
               <button
                 onClick={() => handlePlanSelection('plus')}
-                className={`mt-8 w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
                   isPlusUser
                     ? 'bg-green-600 text-white hover:bg-green-700'
                     : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -93,23 +103,17 @@ const Pricing = () => {
               >
                 {isPlusUser ? 'Access Plus' : 'Buy Now'}
               </button>
-              <ul className="mt-8 space-y-4">
-                <Feature>Everything in Free, plus:</Feature>
-                <Feature>Watermark-free PDF downloads</Feature>
-                <Feature>Premium templates</Feature>
-                <Feature>Priority support</Feature>
-              </ul>
             </div>
           </div>
 
           {/* Premium Plan */}
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105 flex flex-col">
             <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
               <span className="bg-purple-600 text-white px-8 py-2 rounded-full text-sm font-medium shadow-lg">
                 Most Popular
               </span>
             </div>
-            <div className="p-8 mt-2">
+            <div className="p-8 mt-2 flex-grow">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Premium</h2>
                 <Wand2 className="h-8 w-8 text-purple-600" />
@@ -125,16 +129,6 @@ const Pricing = () => {
                   Valid for 7 days
                 </p>
               </div>
-              <button
-                onClick={() => handlePlanSelection('premium')}
-                className={`mt-8 w-full py-3 px-6 rounded-lg font-medium transition-colors ${
-                  isPremiumUser
-                    ? 'bg-green-600 text-white hover:bg-green-700'
-                    : 'bg-purple-600 text-white hover:bg-purple-700'
-                }`}
-              >
-                {isPremiumUser ? 'Access Premium' : 'Buy Now'}
-              </button>
               <ul className="mt-8 space-y-4">
                 <Feature>Everything in Plus, plus:</Feature>
                 <Feature>AI writing assistant</Feature>
@@ -143,11 +137,23 @@ const Pricing = () => {
                 <Feature>Job match analysis</Feature>
               </ul>
             </div>
+            <div className="p-8 pt-0 mt-auto">
+              <button
+                onClick={() => handlePlanSelection('premium')}
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                  isPremiumUser
+                    ? 'bg-green-600 text-white hover:bg-green-700'
+                    : 'bg-purple-600 text-white hover:bg-purple-700'
+                }`}
+              >
+                {isPremiumUser ? 'Access Premium' : 'Buy Now'}
+              </button>
+            </div>
           </div>
 
           {/* Pro Plan */}
-          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105">
-            <div className="p-8">
+          <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible transition-transform hover:scale-105 flex flex-col">
+            <div className="p-8 flex-grow">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Pro</h2>
                 <Sparkles className="h-8 w-8 text-indigo-600" />
@@ -163,16 +169,6 @@ const Pricing = () => {
                   Subscription renews every 3 weeks
                 </p>
               </div>
-              <button
-                onClick={() => handlePlanSelection('pro')}
-                className={`mt-8 w-full py-3 px-6 rounded-lg font-medium transition-colors ${
-                  isProUser
-                    ? 'bg-green-600 text-white hover:bg-green-700'
-                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                }`}
-              >
-                {isProUser ? 'Access Pro Features' : 'Subscribe Now'}
-              </button>
               <ul className="mt-8 space-y-4">
                 <Feature>Everything in Premium, plus:</Feature>
                 <Feature>Import from PDF/DOCX</Feature>
@@ -181,6 +177,18 @@ const Pricing = () => {
                 <Feature>Automatic renewal</Feature>
                 <Feature>Priority support</Feature>
               </ul>
+            </div>
+            <div className="p-8 pt-0 mt-auto">
+              <button
+                onClick={() => handlePlanSelection('pro')}
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                  isProUser
+                    ? 'bg-green-600 text-white hover:bg-green-700'
+                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                }`}
+              >
+                {isProUser ? 'Access Pro Features' : 'Subscribe Now'}
+              </button>
             </div>
           </div>
         </div>
@@ -203,7 +211,7 @@ const Pricing = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-green-500" />
-                  Basic templates
+                  Classic, Split & Executive layouts
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-green-500" />
@@ -224,7 +232,7 @@ const Pricing = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-green-500" />
-                  Premium templates
+                  All premium templates
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-5 w-5 text-green-500" />

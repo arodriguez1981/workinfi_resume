@@ -381,7 +381,7 @@ const CoverLetter = () => {
                   </p>
                 </div>
 
-                <div className="mt-6 text-gray-800 text-justify whitespace-pre-wrap leading-relaxed">
+                <div className="mt-6 text-gray-800 text-justify break-words whitespace-pre-wrap leading-relaxed">
                   {formData.letterContent || (
                     <p className="text-gray-500 italic">No content provided</p>
                   )}

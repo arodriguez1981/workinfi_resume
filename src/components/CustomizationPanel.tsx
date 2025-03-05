@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Layout, Palette, Type, Layers, X, Columns, AlignLeft, Sidebar, Rows, Grid3X3, Grid, LayoutTemplate } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Layout, Palette, Type, Layers, X, Columns, AlignLeft, Sidebar, Rows, Grid3X3, Grid, LayoutTemplate, Lock } from 'lucide-react';
 import { clsx } from 'clsx';
 import { useResumeCustomization } from '../contexts/ResumeCustomizationContext';
+import { useAuth } from '../contexts/AuthContext';
 
 interface CustomizationPanelProps {
   onClose: () => void;
@@ -19,51 +20,69 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({ onClose }) => {
     sections,
     toggleSection,
     personalInfoFields,
-    togglePersonalInfoField
+    togglePersonalInfoField,
+    availableLayouts
   } = useResumeCustomization();
+  
+  const { isPlusUser, isPremiumUser, isProUser } = useAuth();
+  const hasPaidPlan = isPlusUser || isPremiumUser || isProUser;
+
+  // If current layout is not in available layouts, reset to classic
+  useEffect(() => {
+    if (!availableLayouts.includes(layout)) {
+      setLayout('classic');
+    }
+  }, [layout, availableLayouts, setLayout]);
 
   const layouts = [
     { 
       id: 'classic', 
       name: 'Classic', 
       icon: AlignLeft,
-      description: 'Traditional single-column layout'
+      description: 'Traditional single-column layout',
+      premium: false
     },
     { 
       id: 'split', 
       name: 'Split', 
       icon: Columns,
-      description: 'Two-column layout with sidebar'
+      description: 'Two-column layout with sidebar',
+      premium: false
     },
     { 
       id: 'executive', 
       name: 'Executive', 
       icon: Grid,
-      description: 'Professional layout with header emphasis'
+      description: 'Professional layout with header emphasis',
+      premium: false
     },
     { 
       id: 'modern', 
       name: 'Modern', 
       icon: LayoutTemplate,
-      description: 'Contemporary design with clean sections'
+      description: 'Contemporary design with clean sections',
+      premium: true
     },
     { 
       id: 'creative', 
       name: 'Creative', 
       icon: Grid3X3,
-      description: 'Bold layout with accent colors'
+      description: 'Bold layout with accent colors',
+      premium: true
     },
     { 
       id: 'minimalist', 
       name: 'Minimalist', 
       icon: Rows,
-      description: 'Clean, simple layout with minimal elements'
+      description: 'Clean, simple layout with minimal elements',
+      premium: true
     },
     { 
       id: 'professional', 
       name: 'Professional', 
       icon: Sidebar,
-      description: 'Structured layout with clear section hierarchy'
+      description: 'Structured layout with clear section hierarchy',
+      premium: true
     }
   ];
 
@@ -176,21 +195,26 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({ onClose }) => {
             <div className="grid grid-cols-1 gap-4">
               {layouts.map(l => {
                 const Icon = l.icon;
+                const isAvailable = !l.premium || hasPaidPlan;
+                const isPremiumLayout = l.premium && !hasPaidPlan;
+                
                 return (
                   <button
                     key={l.id}
-                    onClick={() => setLayout(l.id)}
+                    onClick={() => isAvailable && setLayout(l.id)}
                     className={clsx(
-                      'p-4 border rounded-lg transition-all',
-                      layout === l.id
+                      'p-4 border rounded-lg transition-all relative',
+                      isAvailable && layout === l.id
                         ? 'border-blue-500 bg-blue-50 text-blue-700'
-                        : 'border-gray-200 hover:border-gray-300'
+                        : isAvailable
+                        ? 'border-gray-200 hover:border-gray-300'
+                        : 'border-gray-200 opacity-60 cursor-not-allowed'
                     )}
                   >
                     <div className="flex items-start gap-4">
                       <div className={clsx(
                         'p-2 rounded-lg',
-                        layout === l.id ? 'bg-blue-100' : 'bg-gray-100'
+                        isAvailable && layout === l.id ? 'bg-blue-100' : 'bg-gray-100'
                       )}>
                         <Icon className="h-6 w-6" />
                       </div>
@@ -199,10 +223,26 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({ onClose }) => {
                         <div className="text-sm text-gray-500">{l.description}</div>
                       </div>
                     </div>
+                    
+                    {isPremiumLayout && (
+                      <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600">
+                        <Lock className="h-3 w-3" />
+                        Plus+
+                      </div>
+                    )}
                   </button>
                 );
               })}
             </div>
+            
+            {!hasPaidPlan && (
+              <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
+                <p className="flex items-center gap-1">
+                  <Lock className="h-4 w-4 flex-shrink-0" />
+                  <span>Upgrade to Plus, Premium, or Pro to unlock Creative, Minimalist, Professional, and Modern layouts.</span>
+                </p>
+              </div>
+            )}
           </div>
         )}
 

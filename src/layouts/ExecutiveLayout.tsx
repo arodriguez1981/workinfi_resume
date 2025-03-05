@@ -102,7 +102,7 @@ const ExecutiveLayout: React.FC<ExecutiveLayoutProps> = ({
               <h2 className="text-xl font-semibold mb-4 pb-2 border-b" style={{ color: colors.primary, borderColor: `${colors.primary}40` }}>
                 {t('summary.title')}
               </h2>
-              <p className="text-gray-700 text-justify">
+              <p className="text-gray-700 text-justify break-words whitespace-pre-wrap">
                 {formatBulletedText(data.summary)}
               </p>
             </div>

@@ -13,7 +13,7 @@ interface DocxContent {
  * @param file The DOCX file to extract text from
  * @returns An object containing cleaned text
  */
-export const extractTextFromDOCX = async (file: File): Promise<DocxContent> => {
+const extractTextFromDOCX = async (file: File): Promise<DocxContent> => {
   try {
     // Read the file as an ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();

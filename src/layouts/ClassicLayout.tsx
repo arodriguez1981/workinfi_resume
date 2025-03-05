@@ -56,7 +56,7 @@ const ClassicLayout: React.FC<ClassicLayoutProps> = ({
                 <FileText className="h-5 w-5" />
                 {t('summary.title')}
               </h2>
-              <p className="text-gray-700 text-justify">
+              <p className="text-gray-700 text-justify break-words whitespace-pre-wrap">
                 {formatBulletedText(data.summary)}
               </p>
             </section>

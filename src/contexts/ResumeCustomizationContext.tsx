@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useAuth } from './AuthContext';
 
 interface Colors {
   primary: string;
@@ -55,11 +56,13 @@ interface ResumeCustomizationContextType {
   toggleSection: (section: keyof Sections) => void;
   personalInfoFields: PersonalInfoFields;
   togglePersonalInfoField: (field: keyof PersonalInfoFields) => void;
+  availableLayouts: string[];
 }
 
 const ResumeCustomizationContext = createContext<ResumeCustomizationContextType | undefined>(undefined);
 
 export function ResumeCustomizationProvider({ children }: { children: React.ReactNode }) {
+  const { isPlusUser, isPremiumUser, isProUser } = useAuth();
   const [layout, setLayout] = useState('classic');
   const [colors, setColors] = useState<Colors>({
     primary: '#2563eb',
@@ -102,6 +105,24 @@ export function ResumeCustomizationProvider({ children }: { children: React.Reac
     linkedin: true
   });
 
+  // Determine available layouts based on user's subscription
+  const availableLayouts = ['classic', 'split', 'executive'];
+  
+  // Add premium layouts if user has Plus, Premium, or Pro subscription
+  if (isPlusUser || isPremiumUser || isProUser) {
+    availableLayouts.push('creative', 'minimalist', 'professional', 'modern');
+  }
+  
+  // Check if current layout is available, if not reset to classic
+  const handleSetLayout = (newLayout: string) => {
+    if (availableLayouts.includes(newLayout)) {
+      setLayout(newLayout);
+    } else {
+      // If selected layout is not available, default to classic
+      setLayout('classic');
+    }
+  };
+
   const toggleSection = (section: keyof Sections) => {
     setSections(prev => ({
       ...prev,
@@ -119,7 +140,7 @@ export function ResumeCustomizationProvider({ children }: { children: React.Reac
   return (
     <ResumeCustomizationContext.Provider value={{
       layout,
-      setLayout,
+      setLayout: handleSetLayout,
       colors,
       setColors,
       typography,
@@ -127,7 +148,8 @@ export function ResumeCustomizationProvider({ children }: { children: React.Reac
       sections,
       toggleSection,
       personalInfoFields,
-      togglePersonalInfoField
+      togglePersonalInfoField,
+      availableLayouts
     }}>
       {children}
     </ResumeCustomizationContext.Provider>

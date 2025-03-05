@@ -4,7 +4,7 @@
 import { extractTextFromPDFBuffer } from './pdfExtractor';
 import { extractTextFromDOCXBuffer } from './docxExtractor';
 
-export interface DocumentContent {
+interface DocumentContent {
   cleanText: string;
   fileType: 'pdf' | 'docx' | 'unknown';
 }
@@ -14,7 +14,7 @@ export interface DocumentContent {
  * @param file The document file to extract text from
  * @returns An object containing cleaned text and file type
  */
-export const extractTextFromDocument = async (file: File): Promise<DocumentContent> => {
+const extractTextFromDocument = async (file: File): Promise<DocumentContent> => {
   try {
     // Read the file as an ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();

@@ -162,7 +162,7 @@ const CreativeLayout: React.FC<CreativeLayoutProps> = ({
               <h2 className="text-xl font-semibold mb-4 inline-block pb-2 border-b-2" style={{ color: colors.primary, borderColor: colors.primary }}>
                 {t('summary.title')}
               </h2>
-              <p className="text-gray-700 text-justify">
+              <p className="text-gray-700 text-justify break-words whitespace-pre-wrap">
                 {formatBulletedText(data.summary)}
               </p>
             </div>

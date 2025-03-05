@@ -48,7 +48,7 @@ export async function createCheckoutSession(plan: 'plus' | 'premium' | 'pro') {
   }
 }
 
-export async function cancelSubscription(subscriptionId: string, reason?: string) {
+async function cancelSubscription(subscriptionId: string, reason?: string) {
   try {
     const { data, error } = await supabase.functions.invoke('cancel-subscription', {
       body: { 

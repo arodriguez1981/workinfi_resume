@@ -70,7 +70,7 @@ const MinimalistLayout: React.FC<MinimalistLayoutProps> = ({
             <h2 className="text-lg font-normal mb-4" style={{ color: colors.primary }}>
               {t('summary.title')}
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 text-justify break-words whitespace-pre-wrap leading-relaxed">
               {formatBulletedText(data.summary)}
             </p>
           </div>

@@ -122,7 +122,7 @@ const ModernLayout: React.FC<ModernLayoutProps> = ({
                 <h2 className="text-lg font-semibold mb-4 pb-2 border-b-2" style={{ color: colors.primary, borderColor: colors.primary }}>
                   {t('summary.title')}
                 </h2>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-justify break-words whitespace-pre-wrap">
                   {formatBulletedText(data.summary)}
                 </p>
               </div>

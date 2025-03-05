@@ -73,94 +73,110 @@ const DownloadOptionsModal: React.FC<DownloadOptionsModalProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Free Option */}
-          <div className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-lg font-semibold">Free</h3>
-              <Download className="h-5 w-5 text-gray-400" />
+          <div className="border rounded-lg flex flex-col hover:shadow-md transition-shadow">
+            <div className="p-6 flex-grow">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-lg font-semibold">Free</h3>
+                <Download className="h-5 w-5 text-gray-400" />
+              </div>
+              <ul className="space-y-2 mb-4 text-sm text-gray-600">
+                <li>• Basic PDF format</li>
+                <li>• Includes watermark</li>
+                <li>• Instant download</li>
+              </ul>
             </div>
-            <ul className="space-y-2 mb-4 text-sm text-gray-600">
-              <li>• Basic PDF format</li>
-              <li>• Includes watermark</li>
-              <li>• Instant download</li>
-            </ul>
-            <button
-              onClick={onDownloadFree}
-              className="w-full py-2 px-4 text-center font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200"
-            >
-              Download Free
-            </button>
+            <div className="p-6 pt-0 mt-auto">
+              <button
+                onClick={onDownloadFree}
+                className="w-full py-2 px-4 text-center font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200"
+              >
+                Download Free
+              </button>
+            </div>
           </div>
 
           {/* Plus Option */}
-          <div className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-lg font-semibold">Plus</h3>
-              <Download className="h-5 w-5 text-blue-600" />
+          <div className="border rounded-lg flex flex-col hover:shadow-md transition-shadow">
+            <div className="p-6 flex-grow">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-lg font-semibold">Plus</h3>
+                <Download className="h-5 w-5 text-blue-600" />
+              </div>
+              <ul className="space-y-2 mb-4 text-sm text-gray-600">
+                <li>• No watermark</li>
+                <li>• Premium templates</li>
+                <li>• 7-day access</li>
+              </ul>
+              <p className="text-sm text-gray-500 mb-4 flex items-center">
+                <Clock className="h-3 w-3 mr-1" />
+                $6 one-time payment
+              </p>
             </div>
-            <ul className="space-y-2 mb-4 text-sm text-gray-600">
-              <li>• No watermark</li>
-              <li>• Premium templates</li>
-              <li>• 7-day access</li>
-            </ul>
-            <p className="text-sm text-gray-500 mb-4 flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
-              $6 one-time payment
-            </p>
-            <button
-              onClick={onUpgradePlus}
-              className="w-full py-2 px-4 text-center font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700"
-            >
-              Upgrade to Plus
-            </button>
+            <div className="p-6 pt-0 mt-auto">
+              <button
+                onClick={onUpgradePlus}
+                className="w-full py-2 px-4 text-center font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Upgrade to Plus
+              </button>
+            </div>
           </div>
 
           {/* Premium Option */}
-          <div className="border-2 border-purple-200 rounded-lg p-6 hover:shadow-md transition-shadow bg-purple-50">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-lg font-semibold">Premium</h3>
-              <Crown className="h-5 w-5 text-purple-600" />
+          <div className="border-2 border-purple-200 rounded-lg flex flex-col hover:shadow-md transition-shadow bg-purple-50">
+            <div className="p-6 flex-grow">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-lg font-semibold">Premium</h3>
+                <Crown className="h-5 w-5 text-purple-600" />
+              </div>
+              <ul className="space-y-2 mb-4 text-sm text-gray-600">
+                <li>• Everything in Plus</li>
+                <li>• AI writing assistant</li>
+                <li>• Cover letter builder</li>
+                <li>• 7-day access</li>
+              </ul>
+              <p className="text-sm text-gray-500 mb-4 flex items-center">
+                <Clock className="h-3 w-3 mr-1" />
+                $10 one-time payment
+              </p>
             </div>
-            <ul className="space-y-2 mb-4 text-sm text-gray-600">
-              <li>• Everything in Plus</li>
-              <li>• AI writing assistant</li>
-              <li>• Cover letter builder</li>
-              <li>• 7-day access</li>
-            </ul>
-            <p className="text-sm text-gray-500 mb-4 flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
-              $10 one-time payment
-            </p>
-            <button
-              onClick={onUpgradePremium}
-              className="w-full py-2 px-4 text-center font-medium rounded-md bg-purple-600 text-white hover:bg-purple-700"
-            >
-              Upgrade to Premium
-            </button>
+            <div className="p-6 pt-0 mt-auto">
+              <button
+                onClick={onUpgradePremium}
+                className="w-full py-2 px-4 text-center font-medium rounded-md bg-purple-600 text-white hover:bg-purple-700"
+              >
+                Upgrade to Premium
+              </button>
+            </div>
           </div>
 
           {/* Pro Option */}
-          <div className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-lg font-semibold">Pro</h3>
-              <Sparkles className="h-5 w-5 text-indigo-600" />
+          <div className="border rounded-lg flex flex-col hover:shadow-md transition-shadow">
+            <div className="p-6 flex-grow">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-lg font-semibold">Pro</h3>
+                <Sparkles className="h-5 w-5 text-indigo-600" />
+              </div>
+              <ul className="space-y-2 mb-4 text-sm text-gray-600">
+                <li>• Everything in Premium</li>
+                <li>• Import from PDF/DOCX</li>
+                <li>• Import from LinkedIn</li>
+                <li>• Import from Indeed</li>
+                <li>• Subscription service</li>
+              </ul>
+              <p className="text-sm text-gray-500 mb-4 flex items-center">
+                <Clock className="h-3 w-3 mr-1" />
+                $17 every 3 weeks
+              </p>
             </div>
-            <ul className="space-y-2 mb-4 text-sm text-gray-600">
-              <li>• Everything in Premium</li>
-              <li>• Import from PDF/DOCX</li>
-              <li>• Import from LinkedIn</li>
-              <li>• Import from Indeed</li>
-              <li>• Subscription service</li>
-            </ul>
-            <p className="text-sm text-gray-500 mb-4 flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
-              $17 every 3 weeks
-            </p>
-            <button
-              onClick={onUpgradePro}
-              className="w-full py-2 px-4 text-center font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
-            >
-              Subscribe to Pro
-            </button>
+            <div className="p-6 pt-0 mt-auto">
+              <button
+                onClick={onUpgradePro}
+                className="w-full py-2 px-4 text-center font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
+              >
+                Subscribe to Pro
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -38,16 +38,16 @@ const Home = () => {
             <p className="mt-6 max-w-lg mx-auto text-xl text-gray-200">
               Build and download your resume for free with <span className="font-semibold">Workinfi</span>. Upgrade to unlock premium features and AI-powered tools.
             </p>
-            <div className="mt-10 flex justify-center gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to="/editor"
-                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 md:text-lg transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 md:text-lg transition-colors"
               >
                 Create Resume
               </Link>
               <Link
                 to={isPremiumUser || isProUser ? "/coverletter" : "/pricing"}
-                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-500 hover:bg-purple-600 md:text-lg transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-500 hover:bg-purple-600 md:text-lg transition-colors"
               >
                 Create Cover Letter
                 {!isPremiumUser && !isProUser && (
@@ -197,8 +197,8 @@ const Home = () => {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Free Plan */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+              <div className="p-6 flex-grow">
                 <h3 className="text-xl font-bold text-gray-900 flex items-center">
                   Free
                 </h3>
@@ -214,9 +214,11 @@ const Home = () => {
                     <span className="ml-2 text-gray-600">Watermarked downloads</span>
                   </li>
                 </ul>
+              </div>
+              <div className="p-6 pt-0 mt-auto">
                 <Link
                   to="/editor"
-                  className="mt-8 block w-full py-2 px-4 text-center font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  className="block w-full py-2 px-4 text-center font-medium rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200"
                 >
                   Get Started
                 </Link>
@@ -224,8 +226,8 @@ const Home = () => {
             </div>
 
             {/* Plus Plan */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+              <div className="p-6 flex-grow">
                 <h3 className="text-xl font-bold text-blue-600 flex items-center">
                   Plus
                 </h3>
@@ -244,9 +246,11 @@ const Home = () => {
                     <span className="ml-2 text-gray-600">Premium templates</span>
                   </li>
                 </ul>
+              </div>
+              <div className="p-6 pt-0 mt-auto">
                 <Link
                   to="/pricing"
-                  className="mt-8 block w-full py-2 px-4 text-center font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700"
+                  className="block w-full py-2 px-4 text-center font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700"
                 >
                   Choose Plus
                 </Link>
@@ -254,7 +258,7 @@ const Home = () => {
             </div>
 
             {/* Premium Plan */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden relative">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
               <div className="absolute top-0 inset-x-0">
                 <div className="h-1 w-full bg-purple-600"></div>
                 <div className="flex justify-center">
@@ -263,7 +267,7 @@ const Home = () => {
                   </span>
                 </div>
               </div>
-              <div className="p-6 pt-8">
+              <div className="p-6 pt-8 flex-grow">
                 <h3 className="text-xl font-bold text-purple-600 flex items-center">
                   Premium
                 </h3>
@@ -286,9 +290,11 @@ const Home = () => {
                     <span className="ml-2 text-gray-600">Cover letter builder</span>
                   </li>
                 </ul>
+              </div>
+              <div className="p-6 pt-0 mt-auto">
                 <Link
                   to="/pricing"
-                  className="mt-8 block w-full py-2 px-4 text-center font-medium rounded-md bg-purple-600 text-white hover:bg-purple-700"
+                  className="block w-full py-2 px-4 text-center font-medium rounded-md bg-purple-600 text-white hover:bg-purple-700"
                 >
                   Choose Premium
                 </Link>
@@ -296,8 +302,8 @@ const Home = () => {
             </div>
 
             {/* Pro Plan */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+              <div className="p-6 flex-grow">
                 <h3 className="text-xl font-bold text-indigo-600 flex items-center">
                   Pro
                 </h3>
@@ -320,9 +326,11 @@ const Home = () => {
                     <span className="ml-2 text-gray-600">Subscription renews automatically</span>
                   </li>
                 </ul>
+              </div>
+              <div className="p-6 pt-0 mt-auto">
                 <Link
                   to="/pricing"
-                  className="mt-8 block w-full py-2 px-4 text-center font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
+                  className="block w-full py-2 px-4 text-center font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
                 >
                   Choose Pro
                 </Link>
@@ -396,7 +404,7 @@ const Home = () => {
             </p>
             <Link
               to="/editor"
-              className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition-colors"
+              className="mt-8 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition-colors"
             >
               Get Started Now
             </Link>

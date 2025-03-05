@@ -28,7 +28,7 @@ export const AdditionalInfoForm: React.FC<AdditionalInfoFormProps> = ({ formData
           value={formData.professionalObjective}
           onChange={(e) => onChange({ professionalObjective: e.target.value })}
           rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 whitespace-pre-wrap"
           placeholder="Write your professional objective..."
         />
       </div>
@@ -84,7 +84,7 @@ export const AdditionalInfoForm: React.FC<AdditionalInfoFormProps> = ({ formData
           value={formData.personalInterests}
           onChange={(e) => onChange({ personalInterests: e.target.value })}
           rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 whitespace-pre-wrap"
           placeholder="Describe your personal interests and hobbies..."
         />
       </div>

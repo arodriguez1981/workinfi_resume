@@ -52,7 +52,7 @@ async function getSuggestions(
   }
 }
 
-export async function getJobMatches(resumeData: any, language: Language = 'EN'): Promise<any[]> {
+async function getJobMatches(resumeData: any, language: Language = 'EN'): Promise<any[]> {
   try {
     const { data, error } = await supabase.functions.invoke('job-matching', {
       body: { resume: resumeData, language }

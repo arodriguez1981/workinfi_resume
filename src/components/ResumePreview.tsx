@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Globe, Linkedin, GraduationCap, Briefcase, Award, Languages, AlignCenterVertical as Certificate, FolderGit2, Heart, Users, Calendar } from 'lucide-react';
+import { FileText, Mail, Phone, MapPin, Globe, Linkedin, GraduationCap, Briefcase, Award, Languages, AlignCenterVertical as Certificate, FolderGit2, Heart, Users, Calendar } from 'lucide-react';
 import { useResumeCustomization } from '../contexts/ResumeCustomizationContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { clsx } from 'clsx';
@@ -42,7 +42,7 @@ interface ResumeData {
   projects: { name: string; description: string; url?: string }[];
   volunteer: { organization: string; role: string; description: string }[];
   references: { name: string; position: string; company: string; contact: string }[];
-  professionalObjective: string;
+  professionalObjective?: string;
   publications?: { title: string; publisher: string; date: string; url?: string }[];
   awards?: { name: string; issuer: string; date: string; description: string }[];
   additionalCourses?: { name: string; institution: string; date: string; description: string }[];
@@ -60,7 +60,7 @@ interface ResumeData {
 }
 
 const ResumePreview: React.FC<{ data: ResumeData }> = ({ data }) => {
-  const { layout, colors, typography, sections, personalInfoFields } = useResumeCustomization();
+  const { layout, colors, typography, sections, personalInfoFields, availableLayouts } = useResumeCustomization();
   const { t } = useLanguage();
 
   const styles = {
@@ -163,9 +163,8 @@ const ResumePreview: React.FC<{ data: ResumeData }> = ({ data }) => {
                     {formatDate(exp.startDate)} {exp.endDate ? `- ${formatDate(exp.endDate)}` : exp.startDate ? `- ${t('present')}` : ''}
                   </p>
                 </div>
-                <div className="text-gray-700 break-words">
-                  {formatBulletedText(exp.description)}
-                </div>
+                <div className="text-gray-700 break-words whitespace-pre-wrap">
+                  {formatBulletedText(exp.description)} </div>
               </div>
             ))}
           </div>
@@ -338,7 +337,7 @@ const ResumePreview: React.FC<{ data: ResumeData }> = ({ data }) => {
             <FileText className="h-5 w-5" />
             Professional Objective
           </h2>
-          <div className="text-gray-700 text-justify break-words">
+          <div className="text-gray-700 text-justify break-words whitespace-pre-wrap">
             {formatBulletedText(data.professionalObjective)}
           </div>
         </div>
@@ -475,7 +474,7 @@ const ResumePreview: React.FC<{ data: ResumeData }> = ({ data }) => {
             <Heart className="h-5 w-5" />
             Personal Interests
           </h2>
-          <div className="text-gray-700 text-justify break-words">
+          <div className="text-gray-700 text-justify break-words whitespace-pre-wrap">
             {formatBulletedText(data.personalInterests)}
           </div>
         </div>
@@ -562,6 +561,9 @@ const ResumePreview: React.FC<{ data: ResumeData }> = ({ data }) => {
 
   // Render the appropriate layout based on the selected layout
   const renderSelectedLayout = () => {
+    // Make sure we're using an available layout
+    const currentLayout = availableLayouts.includes(layout) ? layout : 'classic';
+    
     const layoutProps = {
       data,
       sections,
@@ -574,7 +576,7 @@ const ResumePreview: React.FC<{ data: ResumeData }> = ({ data }) => {
       t
     };
 
-    switch (layout) {
+    switch (currentLayout) {
       case 'split':
         return <SplitLayout {...layoutProps} />;
       case 'executive':
