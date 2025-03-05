@@ -8,13 +8,16 @@ export async function createCheckoutSession(plan: 'plus' | 'premium' | 'pro') {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('User not authenticated');
 
+    // Get the current domain
+    const domain = window.location.origin;
+
     // Create Stripe checkout session through Supabase Edge Function
     const { data, error } = await supabase.functions.invoke('create-checkout-session', {
       body: { 
         plan, 
         userId: user.id,
         isSubscription: plan === 'pro', // Only Pro plan is a subscription
-        returnUrl: window.location.origin + '/profile' // Redirect to profile page after payment
+        returnUrl: `${domain}/editor` // Use full domain for return URL
       }
     });
 
